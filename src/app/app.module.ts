@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CarListComponent } from './cars/car-list/car-list.component';
 
-import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule, MatSelectModule, MatFormFieldModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarEditComponent } from './cars/car-edit/car-edit.component';
 import { FormsModule } from '@angular/forms';
@@ -34,6 +34,8 @@ import { OwnersEditComponent } from './owners/owners-edit/owners-edit.component'
     MatInputModule,
     MatListModule,
     MatToolbarModule,
+    MatSelectModule,
+    MatFormFieldModule,
     FormsModule
   ],
   providers: [],

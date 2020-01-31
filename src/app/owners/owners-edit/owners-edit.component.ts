@@ -25,7 +25,6 @@ export class OwnersEditComponent implements OnInit {
       if (dni) {
         this.ownerService.get(dni).subscribe((owner: any) => {
           if (owner) {
-            console.log(JSON.stringify(owner))
             this.owner = owner._embedded.owners[0];
             this.owner.href = owner._embedded.owners[0]._links.self.href;
             
