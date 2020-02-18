@@ -10,7 +10,7 @@ import { map } from "rxjs/operators";
 export class OwnerService {
   public API = '//thawing-chamber-47973.herokuapp.com';
   public OWNER_API = this.API + '/owners';
-  public Search_API= this.OWNER_API +'/search/findByDni?dni='
+  public Search_API = this.OWNER_API + '/search/findByDni?dni='
   constructor(private http: HttpClient) { }
 
 

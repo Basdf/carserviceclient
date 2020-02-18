@@ -1,22 +1,23 @@
 <mat-card>
-    <mat-card-title>
-        <mat-slide-toggle class="margin" [color]="warn" [(ngModel)]="checked" (change)="changeSlideEvent($event)">
-            Slide to {{checked ? 'cancel selection' : 'select which ones to delete'}}
-        </mat-slide-toggle>
-    </mat-card-title>
-
-    <mat-card-content>
-        <mat-list>
-            <mat-list-item *ngFor="let owner of owners">
-                <h3 mat-line>
-                    <a mat-button [routerLink]="['/owner-edit', owner.dni]">{{owner.name}}</a>
-                </h3>
-                <mat-checkbox [(ngModel)]="owner.check" *ngIf="checked" (change)="changeCheckBoxEvent($event)"></mat-checkbox>
-            </mat-list-item>
-        </mat-list>
-    </mat-card-content>
-    <button mat-fab color="primary" [routerLink]="['/owner-add']">Add</button>
-    <button mat-fab color="primary" *ngIf="checked" (click)="removeSelected($event)" [disabled]="checkedBool">Delete</button>
-
-
+  <mat-card-title>
+    <mat-slide-toggle class="margin" color="warn" [(ngModel)]="checked" (change)="changeSlideEvent($event)">
+      Slide to {{checked ? 'cancel selection' : 'select which ones to delete'}}
+    </mat-slide-toggle>
+  </mat-card-title>
+  <mat-card-title>
+    <button mat-stroked-button color="warn" (click)="removeSelected($event)" *ngIf="checked" [disabled]="checkedBool">Delete Selection</button>
+</mat-card-title>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let owner of owners">
+        <h3 mat-line>
+          <a mat-button [routerLink]="['/owner-edit', owner.dni]">{{owner.name}}</a>
+        </h3>
+        <div>
+          <mat-checkbox [(ngModel)]="owner.check" *ngIf="checked" (change)="changeCheckBoxEvent($event)"></mat-checkbox>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <button mat-fab color="primary" [routerLink]="['/owner-add']">Add</button>
 </mat-card>
