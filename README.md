@@ -25,3 +25,31 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## Car service 
+Este servicio consume dos apis diferentes las cuales son https://thawing-chamber-47973.herokuapp.com/cars y https://thawing-chamber-47973.herokuapp.com/cool-cars. El servicio contiene los siguiente metodos:
+
+- getAll():Este metodo llama a la api cars y trae todo los registros.
+- get(id: string):Este metodo llama a la api cool-cars y trae el registro con el id igual al id buscado
+- save(car: any):Este metodo guarda el objeto car en el servicio cars 
+- remove(href: string): Este metodo busca el car con el href indicado y lo borra del servicio cars
+
+## Owner service 
+Este servicio consume la api https://thawing-chamber-47973.herokuapp.com/owners el cual trae un metodo de busqueda por Dni para consumir. Los metodos del servicio son los siguientes metodos:
+
+- getAll():Este metodo llama a la api owenes y trae todo los registros.
+- get(dni: string):Este metodo llama el metodo findByDni de la api owners para buscar el owner con el dni buscado
+- save(owner: any):Este metodo guarda el objeto owner en el servicio owners 
+- remove(href: string): Este metodo busca el car con el href indicado y lo borra del servicio owners
+## Cars Component 
+este componente esta compueto por los siguientes componente:
+- cars-list:Componente encargado de listar todos los carros registrados en el servicio car,permite eliminar carros e dirigirse a la pantalla para editar o crear carros.
+- cars-edit:Componente encargado de editar o crear carros con los campos id, name y owner dni siendo owner dni opcional.
+## Owner Component 
+este componente esta compueto por los siguientes componente:
+- owner-list:Componente encargado de listar todos los owners registrados en el servicio owner,permite eliminar uno o multiples owner y eliminar la relacion entre los carros y los owners ademas permite dirigirse a la pantalla para editar o crear owners.
+- owner-edit:Componente encargado de editar o crear owners con los campos dni, name y profession.
+
+## Material Component
+Componente que importa todo angular material al proyecto.
