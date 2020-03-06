@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { OwnerService } from 'src/app/shared/owner/owner.service';
 import { CarService } from 'src/app/shared/car/car.service';
+import { DeleteRelationService } from 'src/app/shared/owner/delete-relation.service';
 
 @Component({
   selector: 'app-owners-edit',
@@ -12,13 +13,12 @@ import { CarService } from 'src/app/shared/car/car.service';
 })
 export class OwnersEditComponent implements OnInit {
   owner: any = {};
-  cars: Array<any>;
   sub: Subscription;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private ownerService: OwnerService,
-    private carService: CarService) {
+    private deleteService:DeleteRelationService) {
   }
 
   ngOnInit() {
@@ -52,23 +52,11 @@ export class OwnersEditComponent implements OnInit {
       this.gotoList();
     }, error => console.error(error));
   }
-  removeRelation(dni: any) {
-    this.carService.getAll().subscribe(data => {
-      this.cars = data;
-      this.cars.forEach(carAux => {
-        if (carAux.ownerDni == dni) {
-          carAux.ownerDni = null;
-          this.carService.save(carAux).subscribe(result => { }, error => console.error(error));
-        }
-      });
-    });
-  }
-
   remove(owner) {
     this.ownerService.remove(owner.href).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
-    this.removeRelation(owner.dni)
+    this.deleteService.removeRelation(owner.dni)
   }
 
 }

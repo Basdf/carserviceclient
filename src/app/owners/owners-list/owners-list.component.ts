@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OwnerService } from 'src/app/shared/owner/owner.service';
 import { CarService } from 'src/app/shared/car/car.service';
+import { DeleteRelationService } from 'src/app/shared/owner/delete-relation.service';
 
 @Component({
   selector: 'app-owners-list',
@@ -13,7 +14,7 @@ export class OwnersListComponent implements OnInit {
   checkedBool = true;
   checked;
   constructor(private ownerService: OwnerService,
-    private carService: CarService) { }
+  private deleteService:DeleteRelationService) { }
 
   ngOnInit() {
     this.ownerService.getAll().subscribe(data => {
@@ -23,19 +24,6 @@ export class OwnersListComponent implements OnInit {
       }
     });
   }
-
-  removeRelation(dni: any) {
-    this.carService.getAll().subscribe(data => {
-      this.cars = data;
-      this.cars.forEach(carAux => {
-        if (carAux.ownerDni == dni) {
-          carAux.ownerDni = null;
-          this.carService.save(carAux).subscribe(result => { }, error => console.error(error));
-        }
-      });
-    });
-  }
-
   removeSelected() {
     this.owners.forEach(ownerAux => {
       if (ownerAux.check) {
@@ -44,7 +32,7 @@ export class OwnersListComponent implements OnInit {
 
           this.ngOnInit();
         }, error => console.error(error));
-        this.removeRelation(ownerAux.dni);
+        this.deleteService.removeRelation(ownerAux.dni);
       }
     });
   }
